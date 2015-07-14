@@ -1,0 +1,91 @@
+h1. Python library for the Pololu Dual MC33926 Motor Driver for Raspberry Pi
+
+Version: 1.0.0
+Release Date: 2015-07-14
+"www.pololu.com":http://www.pololu.com/
+
+h2. Summary
+
+This library runs on the "Raspberry Pi":http://www.pololu.com/product/2752 (Model B+, A+, or Pi 2) and provides functions for controlling both channels of the "Pololu Dual MC33926 Motor Driver for Raspberry Pi":http://www.pololu.com/product/2755.  This library supports both Python 2.7.x and Python <notextile>3.2.x</notextile>.
+
+Programs that use this library will need to be run as the root user so they can access the GPIO pins.
+
+h2. Getting Started
+
+h3. Installation
+
+This library depends on "WiringPi":http://wiringpi.com/ and "WiringPi2-Python":https://github.com/Gadgetoid/WiringPi2-Python.  The instructions below explain how to install these prerequisites.
+
+These instructions assume you are using Raspbian, Debian, or some other distribution that provides the @apt-get@ command for managing packages.  If you do not have @apt-get@, you will need to use a different method to install the required packages.
+
+These instructions also assume you will use Python <notextile>2.7.x</notextile>.  If you want to use Python <notextile>3.2.x</notextile>, you will need to replace @python@ with @python3@ in the names of the @apt-get@ packages below and use the @python3@ command for running Python scripts.
+
+First of all, you should install git so you can easily download the source code of the required libraries.  You can make sure git is installed by running:
+
+<pre>
+sudo apt-get install git
+</pre>
+
+Next, to download and install WiringPi, run the following commands:
+
+<pre>
+git clone git://git.drogon.net/wiringPi
+cd wiringPi
+./build</pre>
+
+Next, to download and install WiringPi2-Python, run:
+
+<pre>
+git clone https://github.com/Gadgetoid/WiringPi2-Python.git
+cd WiringPi2-Python
+sudo apt-get install python-dev python-setuptools
+sudo python setup.py install</pre>
+
+Finally, to download and install the dual_mc33926_rpi library, run:
+
+<pre>
+git clone https://github.com/pololu/dual-mc33926-motor-driver-rpi.git
+cd dual-mc33926-motor-driver-rpi
+sudo python setup.py install</pre>
+
+h3. Running the example program
+
+This library comes with an example program that drives each motor in both directions.  To run the example, navigate to the dual-mc33926-motor-driver-rpi directory and run:
+
+<pre>
+sudo python example.py</pre>
+
+h2. Library reference
+
+This library uses ultrasonic 20&nbsp;kHz PWM to drive the motors.
+
+Motor speeds in this library are represented as numbers between *-480* and *480* (inclusive).  A speed of 0 corresponds to braking.  Positive speeds correspond to current flowing from M1A/M2A to M1B/M2B, while negative speeds correspond to current flowing in the other direction.
+
+The library can be imported into a Python program with the following line:
+
+<pre>
+from dual_mc33926_rpi import motors, MAX_SPEED</pre>
+
+After importing the library, you can use the commands below to enable the motors and set motor speeds:
+
+- @motors.enable()@: Enable both motor 1 and motor 2.
+- @motors.motor1.enable(speed)@: Enable motor 1.
+- @motors.motor2.enable(speed)@: Enable motor 2.
+- @motors.disable()@: Disable both motor 1 and motor 2.
+- @motors.motor1.disable(speed)@: Disable motor 1.
+- @motors.motor2.disable(speed)@: Disable motor 2.
+- @motors.setSpeeds(m1_speed, m2_speed)@: Set speed and direction for both motor 1 and motor 2.
+- @motors.motor1.setSpeed(speed)@: Set speed and direction for motor 1.
+- @motors.motor2.setSpeed(speed)@: Set speed and direction for motor 2.
+
+For convenience, a constant called @MAX_SPEED@ (which is equal to 480) is available on all the objects provided by this library.  You can access it directly by just writing @MAX_SPEED@ if you imported it as shown above, or it can be accessed in the following ways:
+
+- @motors.MAX_SPEED@
+- @motors.motor1.MAX_SPEED@
+- @motors.motor2.MAX_SPEED@
+
+If you are controlling multiple motor drivers, you might prefer to import the library using @import dual_mc33926_rpi@, which requires the commands listed above to be prefixed with @dual_mc33926_rpi.@.
+
+h2. Version history
+
+* 1.0.0 (2015-07-14): Original release.
