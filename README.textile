@@ -69,11 +69,11 @@ from dual_mc33926_rpi import motors, MAX_SPEED</pre>
 After importing the library, you can use the commands below to enable the motors and set motor speeds:
 
 - @motors.enable()@: Enable both motor 1 and motor 2.
-- @motors.motor1.enable(speed)@: Enable motor 1.
-- @motors.motor2.enable(speed)@: Enable motor 2.
+- @motors.motor1.enable()@: Enable motor 1.
+- @motors.motor2.enable()@: Enable motor 2.
 - @motors.disable()@: Disable both motor 1 and motor 2.
-- @motors.motor1.disable(speed)@: Disable motor 1.
-- @motors.motor2.disable(speed)@: Disable motor 2.
+- @motors.motor1.disable()@: Disable motor 1.
+- @motors.motor2.disable()@: Disable motor 2.
 - @motors.setSpeeds(m1_speed, m2_speed)@: Set speed and direction for both motor 1 and motor 2.
 - @motors.motor1.setSpeed(speed)@: Set speed and direction for motor 1.
 - @motors.motor2.setSpeed(speed)@: Set speed and direction for motor 2.
