@@ -10,7 +10,7 @@ This library runs on the "Raspberry Pi":http://www.pololu.com/product/2757 (Mode
 
 Programs that use this library will need to be run as the root user so they can access the GPIO pins.
 
-A port from Python to Java of this library is available on "~vorburger/dual-mc33926-motor-driver-pi4j":https://github.com/vorburger/dual-mc33926-motor-driver-pi4j/.
+A Java port of this library is available at "~vorburger/dual-mc33926-motor-driver-pi4j":https://github.com/vorburger/dual-mc33926-motor-driver-pi4j/.
 
 h2. Getting Started
 
